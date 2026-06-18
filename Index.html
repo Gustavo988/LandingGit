@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark" data-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Título exibido na aba do navegador e em resultados de busca (SEO) -->
+  <title>Gustavo Barroso — Desenvolvedor & Automação</title>
+
+  <!-- Descrição usada por mecanismos de busca e ao compartilhar em redes sociais -->
+  <meta name="description" content="Portfólio de Gustavo Barroso Rodrigues — desenvolvimento de software, automação de processos com Python e análise de dados." />
+
+  <!-- Folha de estilos externa: mantém o HTML limpo e o CSS reutilizável -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Wrapper central: limita a largura máxima do conteúdo e centraliza na página -->
+  <div class="wrap">
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+         ║  NAVBAR                                              ║
+         ╚══════════════════════════════════════════════════════╝ -->
+    <nav class="card nav" aria-label="Navegação principal">
+
+      <!-- Nome/marca exibido no lado esquerdo -->
+      <span class="nav__brand">Gustavo Dev</span>
+
+      <!-- Links de âncora: o main.js aplica scroll suave nesses cliques -->
+      <ul class="nav__links" role="list">
+        <li><a class="nav__link" href="#sobre"    data-i18n="nav.about">Sobre</a></li>
+        <li><a class="nav__link" href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+        <li><a class="nav__link" href="#skills"   data-i18n="nav.skills">Skills</a></li>
+        <li><a class="nav__link" href="#contato"  data-i18n="nav.contact">Contato</a></li>
+      </ul>
+
+      <!-- Grupo de ações da navbar: tema, idioma e CV.
+           Agrupados em nav__actions para facilitar o alinhamento flex. -->
+      <div class="nav__actions">
+
+        <!-- Botão de alternância de tema (escuro ↔ claro).
+             aria-label atualizado via JS conforme o estado atual.
+             id="js-theme-btn" é o gancho para o evento em main.js. -->
+        <button class="nav__icon-btn" id="js-theme-btn" aria-label="Mudar para tema claro">
+          <!-- Ícone de lua (tema escuro ativo) -->
+          <svg class="icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Ícone de sol (tema claro ativo) — alternado via CSS com data-theme -->
+          <svg class="icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- Botão de alternância de idioma (PT ↔ EN).
+             Exibe a sigla do idioma OPOSTO (indica para onde vai ao clicar).
+             id="js-lang-btn" é o gancho para o evento em main.js. -->
+        <button class="nav__icon-btn nav__lang-btn" id="js-lang-btn"
+                aria-label="Switch to English">
+          <span id="js-lang-label">EN</span>
+        </button>
+
+        <!-- Botão de download do currículo.
+             id="js-cv-btn" é o gancho para o evento em main.js. -->
+        <a class="nav__cv-btn" href="#" id="js-cv-btn" aria-label="Baixar currículo em PDF">
+          <span data-i18n="nav.cv">CV</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
+        </a>
+
+      </div><!-- /.nav__actions -->
+    </nav>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+         ║  CONTEÚDO PRINCIPAL                                  ║
+         ╚══════════════════════════════════════════════════════╝ -->
+    <main>
+
+      <!-- ── HERO / SOBRE ───────────────────────────────────── -->
+      <section class="card hero" id="sobre" aria-labelledby="hero-title">
+        <div>
+          <p class="hero__greeting" data-i18n="hero.greeting">Olá, eu sou</p>
+          <h1 class="hero__title" id="hero-title">Gustavo Barroso</h1>
+          <p class="hero__description" data-i18n="hero.description">
+            Desenvolvedor focado em automação de processos, análise de dados e segurança
+            da informação — transformando rotinas manuais em soluções eficientes.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary"    href="#projetos" data-i18n="hero.cta.projects">Ver projetos →</a>
+            <a class="btn btn--secondary"  href="#contato"  data-i18n="hero.cta.contact">Contato</a>
+          </div>
+        </div>
+
+        <div class="hero__avatar" role="img" aria-label="Foto de perfil de Gustavo">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ── SKILLS ─────────────────────────────────────────── -->
+      <section class="card" id="skills" aria-labelledby="skills-title">
+        <h2 class="section__title" id="skills-title" data-i18n="skills.title">Skills</h2>
+        <ul class="skills__grid" role="list" id="js-skills-grid">
+          <!-- Preenchido via JavaScript (main.js → renderSkills) -->
+        </ul>
+      </section>
+
+      <!-- ── PROJETOS ───────────────────────────────────────── -->
+      <section class="card" id="projetos" aria-labelledby="projects-title">
+        <h2 class="section__title" id="projects-title" data-i18n="projects.title">Projetos</h2>
+        <div class="projects__grid" id="js-projects-grid">
+          <!-- Preenchido via JavaScript (main.js → renderProjects) -->
+        </div>
+      </section>
+
+      <!-- ── CONTATO ────────────────────────────────────────── -->
+      <section class="card contact" id="contato" aria-labelledby="contact-title">
+        <h2 class="contact__title" id="contact-title" data-i18n="contact.title">Vamos trabalhar juntos?</h2>
+        <p class="contact__description" data-i18n="contact.description">
+          Disponível para projetos de automação, análise de dados e oportunidades full-time.
+        </p>
+
+        <div class="contact__actions">
+
+          <a class="btn btn--primary"
+             href="mailto:gbrodrigues0141@gmail.com"
+             aria-label="Enviar e-mail para Gustavo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-10 5L2 7"/>
+            </svg>
+            <span data-i18n="contact.email">Enviar e-mail</span>
+          </a>
+
+          <a class="btn btn--secondary"
+             href="https://wa.me/5519991801346"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Contato via WhatsApp (abre em nova aba)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            WhatsApp
+          </a>
+
+          <a class="btn btn--secondary"
+             href="https://github.com"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Perfil no GitHub (abre em nova aba)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 1C5.92 1 1 5.92 1 12c0 4.86 3.15 8.98 7.52 10.43.55.1.75-.24.75-.53v-1.86c-3.06.67-3.71-1.47-3.71-1.47-.5-1.27-1.22-1.61-1.22-1.61-1-.68.07-.67.07-.67 1.1.08 1.69 1.13 1.69 1.13.98 1.69 2.58 1.2 3.21.92.1-.71.39-1.2.7-1.47-2.44-.28-5.01-1.22-5.01-5.44 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.91 0 0 .92-.3 3.02 1.13a10.4 10.4 0 0 1 5.5 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.51.22 2.63.11 2.91.7.77 1.13 1.75 1.13 2.95 0 4.23-2.58 5.16-5.03 5.43.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53A11.01 11.01 0 0 0 23 12c0-6.08-4.92-11-11-11z"/>
+            </svg>
+            GitHub
+          </a>
+
+        </div>
+      </section>
+    </main>
+
+  </div><!-- /.wrap -->
+
+  <script src="main.js"></script>
+
+</body>
+</html>
