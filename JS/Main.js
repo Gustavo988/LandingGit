@@ -48,10 +48,10 @@ const TRANSLATIONS = {
     'contact.email':         'Enviar e-mail',
 
     /* Projetos — título e stack (referenciados nos dados de PROJECTS) */
-    'project.rats.title':    'Automação de RATs',
-    'project.stock.title':   'Dashboards de Estoque',
-    'project.apps.title':    'Apps de Controle',
-    'project.link':          'Ver projeto',
+    'project.rats.title':      'Automação de RATs',
+    'project.forensics.title': 'Forense Digital — Cadeia de Custódia',
+    'project.apps.title':      'Apps de Controle',
+    'project.link':            'Ver projeto',
   },
 
   en: {
@@ -81,10 +81,10 @@ const TRANSLATIONS = {
     'contact.email':         'Send email',
 
     /* Projetos */
-    'project.rats.title':    'RAT Automation',
-    'project.stock.title':   'Inventory Dashboards',
-    'project.apps.title':    'Control Apps',
-    'project.link':          'View project',
+    'project.rats.title':      'RAT Automation',
+    'project.forensics.title': 'Digital Forensics — Chain of Custody',
+    'project.apps.title':      'Control Apps',
+    'project.link':            'View project',
   }
 };
 
@@ -155,10 +155,14 @@ const PROJECTS = [
     svgPath: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/>'
   },
   {
-    titleKey: 'project.stock.title',
-    stack: 'Power BI + SQL + KPIs',
-    contactAnchor: '#contato',
-    svgPath: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>'
+    titleKey: 'project.forensics.title',
+    stack: 'Python + Forense Digital + Chain of Custody',
+    /* Link real do repositório no GitHub — abre em nova aba.
+       Diferente dos outros projetos (que ainda usam #contato como
+       placeholder), este já tem um link público definitivo. */
+    contactAnchor: 'https://github.com/Gustavo988/forense-digital-chain-of-custody',
+    externalLink: true,
+    svgPath: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M9 16h6M9 8h2"/><circle cx="6.5" cy="8" r="0.5" fill="currentColor"/>'
   },
   {
     titleKey: 'project.apps.title',
@@ -273,19 +277,38 @@ function renderSkills(skills, container) {
  * @param {HTMLElement}     container
  * @param {string}          lang — Idioma ativo ('pt' | 'en')
  */
+/**
+ * Gera e insere os cards de projeto no container.
+ * Usa t() para buscar o título traduzido conforme o idioma ativo.
+ *
+ * Projetos com externalLink: true apontam para uma URL real (ex: GitHub)
+ * e abrem em nova aba com rel="noopener noreferrer" por segurança.
+ * Projetos sem essa flag usam contactAnchor como âncora interna (#contato).
+ *
+ * @param {typeof PROJECTS} projects
+ * @param {HTMLElement}     container
+ * @param {string}          lang — Idioma ativo ('pt' | 'en')
+ */
 function renderProjects(projects, container, lang) {
-  const cards = projects.map(({ titleKey, stack, contactAnchor, svgPath }) => `
+  const cards = projects.map(({ titleKey, stack, contactAnchor, svgPath, externalLink }) => {
+    /* Define os atributos do link conforme o tipo: externo (GitHub) ou interno (#contato) */
+    const linkAttrs = externalLink
+      ? `href="${contactAnchor}" target="_blank" rel="noopener noreferrer"`
+      : `href="${contactAnchor}"`;
+
+    return `
     <article class="project">
       <div class="project__icon">
         ${buildIconSvg(svgPath)}
       </div>
       <h3 class="project__title">${t(titleKey, lang)}</h3>
       <p class="project__stack">${stack}</p>
-      <a class="project__link" href="${contactAnchor}">
+      <a class="project__link" ${linkAttrs}>
         ${t('project.link', lang)} ${buildArrowSvg()}
       </a>
     </article>
-  `).join('');
+  `;
+  }).join('');
 
   container.innerHTML = cards;
 }
