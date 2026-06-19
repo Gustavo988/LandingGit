@@ -189,7 +189,7 @@ const STORAGE_KEY_THEME = 'portfolio-theme';  /* Chave usada no localStorage */
 const STORAGE_KEY_LANG  = 'portfolio-lang';
 
 /** URL do currículo em PDF. Deixe vazio para exibir alerta de configuração. */
-const CV_URL = '';
+const CV_URL = 'CV_Gustavo.pdf';
 
 
 /* ==========================================================================
